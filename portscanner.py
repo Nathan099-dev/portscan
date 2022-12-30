@@ -3,11 +3,8 @@ import sys
 import socket
 from datetime import datetime
 
-ascii_banner = pyfiglet.figlet_format('portscanner')
-print(ascii_banner)
 
 target = input(str('ip alvo: '))
-ports = []
 
 print('=' * 80)
 print('Escaneando o alvo:' + target)
