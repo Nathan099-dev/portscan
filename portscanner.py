@@ -27,8 +27,7 @@ while True:
 				pass
 
 		for port in open_ports:
-			print(f'porta {portas} está aberta em {ip_add_entered}.'
-			)
+			print(f'porta {portas} está aberta em {ip_add_entered}.')
 
 
 
