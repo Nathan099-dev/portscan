@@ -3,8 +3,6 @@ import sys
 
 def scann(target_ip, portas):
 	target_ip = str("Digite seu alvo")
-	portas = []
-
 	try:
 		for portas in range(1, 65535):
 			sys.argv[1]
