@@ -1,25 +1,36 @@
+import pyfiglet
 import socket
 import sys
+from datetime import datetime
 
-def scann(target_ip, portas):
-	target_ip = str(input('Digite o seu alvo'))
-	try:
-		for portas in range(1, 65535):
-			s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-			s.connect_ex((target_ip, portas))
+ascii_banner = pyfiglet.figlet_format('Python portscan')
+print(ascii_banner)
 
-		if portas == 0:
-			print('porta, {} ====> ABERTA'.format(portas)) 
+def scanner(target, i):
+  target = str(input('Digite o seu alvo:' + ' '))
 
-	except KeyboardInterrupt:
-		print('interrompido')
-		sys.exit()
+  print("=" * 100)
+  print(f'Escaneando alvo: {target}')
+  print("escaneando alvo em" + str(datetime.now()))
+  print("=" * 100)
 
-	except socket.gaierror:
-		print('Não resolvido')
-		sys.exit()
+  try:
+    for i in range(1, 65535):
+      s  = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+      s.settimeout(.5)
+      s.connect_ex((target, i))
 
-scann()
+      if i == 0:
+        print(f'{i}, opened')
+        
 
+    else:
+     print(f'{i}, closed')
 
+  except KeyboardInterrupt:
+    sys.exit()
 
+  except SystemError:
+    sys.exit()
+
+scanner(target='', i='')
