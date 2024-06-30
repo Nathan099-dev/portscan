@@ -24,8 +24,8 @@ def scanner(target, i):
         print(f'{i}, opened')
         
 
-    else:
-     print(f'{i}, closed')
+      else:
+          print(f'{i}, closed')
 
   except KeyboardInterrupt:
     sys.exit()
