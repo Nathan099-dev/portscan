@@ -11,23 +11,22 @@ def scanner(target, i):
 
   print("=" * 100)
   print(f'Escaneando alvo: {target}')
-  print("escaneando alvo em" + str(datetime.now()))
+  print("escaneando alvo em" + ' ' + str(datetime.now()))
   print("=" * 100)
 
   try:
     for i in range(1, 65535):
       s  = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
       s.settimeout(.5)
-      s.connect_ex((target, i))
+      res = s.connect_ex((target, i))
 
-      if i == 0:
+      if res == 0:
         print(f'{i}, opened')
-        
-
       else:
-          print(f'{i}, closed')
+          pass
 
   except KeyboardInterrupt:
+    print('Atalho CTRL + C pressionado... Interrompendo escaneamento')
     sys.exit()
 
   except SystemError:
