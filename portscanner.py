@@ -9,8 +9,6 @@ from datetime import datetime
 ascii_banner = pyfiglet.figlet_format('Python portscan')
 print(ascii_banner)
 
-os.system('cls')
-
 init()
 GREEN = Fore.GREEN
 GRAY = Fore.LIGHTBLACK_EX
