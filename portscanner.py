@@ -29,7 +29,6 @@ def scanner(target, i):
 
       if response == 0:
         print(f' {GREEN} [+] {i}' + ' ' + 'opened')
-        
       else:
           pass
 
