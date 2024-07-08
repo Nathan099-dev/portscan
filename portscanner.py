@@ -24,7 +24,7 @@ def scanner(target, i):
   try:
     for i in range(1, 65535):
       s  = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-      s.settimeout(.5)
+      s.settimeout(.15)
       response = s.connect_ex((target, i))
 
       if response == 0:
