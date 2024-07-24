@@ -12,7 +12,6 @@ init()
 GREEN = Fore.GREEN
 GRAY = Fore.LIGHTBLACK_EX
 
-nm = nmap.PortScanner()
  
 def scanner(target, i):
   target = str(input('Digite o seu alvo:' + ' '))
