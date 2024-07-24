@@ -1,7 +1,6 @@
 import pyfiglet
 import socket
 import sys
-import os
 import colorama
 from colorama import Fore, init
 from datetime import datetime
@@ -13,7 +12,8 @@ init()
 GREEN = Fore.GREEN
 GRAY = Fore.LIGHTBLACK_EX
 
-
+nm = nmap.PortScanner()
+ 
 def scanner(target, i):
   target = str(input('Digite o seu alvo:' + ' '))
   
