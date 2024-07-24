@@ -2,6 +2,7 @@ import pyfiglet
 import socket
 import sys
 import os
+import nmap 
 import colorama
 from colorama import Fore, init
 from datetime import datetime
@@ -15,28 +16,29 @@ GRAY = Fore.LIGHTBLACK_EX
 
 def scanner(target, i):
   target = str(input('Digite o seu alvo:' + ' '))
+  sys.argv[1]
   
   print("=" * 100)
   print(f'Escaneando alvo: {target}')
   print("escaneando alvo em" + ' ' + str(datetime.now()))
   print("=" * 100)
 
-  try:
-    for i in range(1, 65535):
-      s  = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-      s.settimeout(.1)
-      response = s.connect_ex((target, i))
+  nm = nmap.portscan()
 
-      if response == 0:
-        print(f' {GREEN} [+] {i}' + ' ' + 'opened')
+for i in range(1,65535):
+  try:
+      s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+      res = s.connect_ex((target, i))
+
+      if res == 0:
+          print(f' {GREEN} [+] {i}' + ' ' + 'opened')
+          s.close()
       else:
-          pass
+        pass
 
   except KeyboardInterrupt:
     print(f'{GRAY} Atalho CTRL + C pressionado... Interrompendo escaneamento')
+    s.close()
     sys.exit()
-
-  except SystemError: 
-    sys.exit()
-
+  
 scanner(target='', i='')
