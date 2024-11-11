@@ -1,7 +1,6 @@
 import pyfiglet
 import socket
 import sys
-import colorama
 from colorama import Fore, init
 from datetime import datetime
 
