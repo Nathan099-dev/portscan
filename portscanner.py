@@ -1,19 +1,16 @@
-import pyfiglet
 import socket
 import sys
-from colorama import Fore, init
 from datetime import datetime
+import json
 
-ascii_banner = pyfiglet.figlet_format('Python portscan')
-print(ascii_banner)
+def save_results(results, filename="scan_results.json"): 
+   with open(filename, 'w') as file: 
+     json.dump(results, file, indent=4)
 
-init()
-GREEN = Fore.GREEN
-GRAY = Fore.LIGHTBLACK_EX
-
- 
 def scanner(target, i):
   target = str(input('Digite o seu alvo:' + ' '))
+
+  total_ports_opened = 0
   
   print("=" * 100)
   print(f'Escaneando alvo: {target}')
@@ -27,15 +24,25 @@ def scanner(target, i):
       response = s.connect_ex((target, i))
 
       if response == 0:
-        print(f' {GREEN} [+] {i}' + ' ' + 'opened')
+        print("Porta {} esta aberta".format(i))
+        total_ports_opened = total_ports_opened + 1
       else:
           pass
-
+      
   except KeyboardInterrupt:
-    print(f'{GRAY} Atalho CTRL + C pressionado... Interrompendo escaneamento')
+    print(f'Atalho CTRL + C pressionado... Interrompendo escaneamento')
+    print('Durante o escaneamento foram encontradas um total de {} portas abetas'.format(total_ports_opened))
+    s.close()
     sys.exit()
 
-  except SystemError: 
+  except socket.gaierror:
+      print('O nome do host não pode ser resolvido... Encerrando')
+      s.close()
+      sys.exit()
+
+  except socket.error: 
+    print('Não foi possíveo conectar  com o servidoer do site... Encerrando escaner')
+    s.close()
     sys.exit()
 
 scanner(target='', i='')
