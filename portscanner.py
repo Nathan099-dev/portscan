@@ -34,13 +34,13 @@ def scanner(target, i):
           pass
       
 
-    found_results =  results = {
+    founded_results =  results = {
          'target': target, 
           'total_opened_ports': total_ports_opened
 
       }
     
-    return found_results
+    return founded_results
       
       
     
