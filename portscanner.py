@@ -2,6 +2,7 @@ import socket
 import sys
 from datetime import datetime
 import json
+import os
 
 def save_results(results, filename="scan_results.json"): 
    with open(filename, 'w') as file: 
@@ -25,10 +26,24 @@ def scanner(target, i):
 
       if response == 0:
         print("Porta {} esta aberta".format(i))
+        os.system('nmap {} {}'.format(target, i))
         total_ports_opened = total_ports_opened + 1
+        s.close()
+        sys.exit()
       else:
           pass
       
+
+    found_results =  results = {
+         'target': target, 
+          'total_opened_ports': total_ports_opened
+
+      }
+    
+    return found_results
+      
+      
+    
   except KeyboardInterrupt:
     print(f'Atalho CTRL + C pressionado... Interrompendo escaneamento')
     print('Durante o escaneamento foram encontradas um total de {} portas abetas'.format(total_ports_opened))
